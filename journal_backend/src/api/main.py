@@ -5,7 +5,15 @@ from typing import List, Optional
 from fastapi import Depends, FastAPI, HTTPException, status, Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from jose import JWTError, jwt
+# Minimal self-check for jose availability; raise a clear runtime error guiding installation
+try:
+    from jose import JWTError, jwt  # provided by python-jose
+except ModuleNotFoundError as exc:
+    raise RuntimeError(
+        "Missing optional dependency 'python-jose'. Install it to enable JWT features:\n"
+        "    pip install python-jose==3.3.0\n"
+        "Note: Do NOT install the 'jose' package; the project uses 'python-jose'."
+    ) from exc
 from passlib.context import CryptContext
 from pydantic import BaseModel, Field
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text, create_engine
