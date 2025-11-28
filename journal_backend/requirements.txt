@@ -27,6 +27,7 @@ pyflakes==3.3.2
 Pygments==2.19.1
 pytest==8.3.4
 python-dotenv==1.1.0
+# Ensure FastAPI auth form and file uploads support
 python-multipart==0.0.20
 PyYAML==6.0.2
 rich==14.0.0
@@ -35,7 +36,9 @@ shellingham==1.5.4
 sniffio==1.3.1
 sqlalchemy==2.0.37
 psycopg[binary,pool]==3.2.3
+# Ensure bcrypt hashing backend is available via passlib
 passlib[bcrypt]==1.7.4
+# Critical: jose import support (provides 'from jose import JWTError, jwt')
 python-jose[cryptography]==3.3.0
 starlette==0.46.1
 typer==0.15.2
