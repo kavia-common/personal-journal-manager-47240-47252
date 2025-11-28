@@ -23,3 +23,21 @@ python -m src.api.generate_openapi
 Notes:
 - Do not hardcode secrets in code; use environment variables.
 - This backend is designed to work with a PostgreSQL database container using psycopg and SQLAlchemy 2.x.
+
+Dependency note for JWT:
+- The application imports jose via: `from jose import JWTError, jwt`.
+- Ensure the package installed is `python-jose` (not `jose`).
+- requirements.txt already pins: `python-jose[cryptography]==3.3.0` to enable recommended crypto backends.
+
+If your environment disallows installing extras from requirements (e.g., `[cryptography]` is rejected), install directly:
+    pip install "python-jose[cryptography]"==3.3.0
+
+As a last-resort fallback (not preferred), you may install without extras:
+    pip install python-jose==3.3.0
+Note: Without the `cryptography` extra some algorithms/backends may be slower or unavailable.
+
+Quick import check:
+- After installing dependencies, you can validate imports by running:
+    python -c "from jose import JWTError, jwt; import uvicorn; print('ok')"
+- Or ensure the app imports:
+    python -c "import importlib; importlib.import_module('src.api.main'); print('app import ok')"
