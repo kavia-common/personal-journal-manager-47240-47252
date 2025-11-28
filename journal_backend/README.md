@@ -41,3 +41,9 @@ Quick import check:
     python -c "from jose import JWTError, jwt; import uvicorn; print('ok')"
 - Or ensure the app imports:
     python -c "import importlib; importlib.import_module('src.api.main'); print('app import ok')"
+
+Runtime install guard (fallback):
+- Some preview/CI environments may ignore requirements.txt. To ensure python-jose gets installed, this repo includes an install guard:
+    python -m src.api._install_guard
+- CI verification helper that runs the guard and validates imports:
+    python scripts/verify_jose_and_app_import.py

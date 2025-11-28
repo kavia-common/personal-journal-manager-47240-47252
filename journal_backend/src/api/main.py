@@ -5,6 +5,14 @@ from typing import List, Optional
 from fastapi import Depends, FastAPI, HTTPException, status, Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+# Attempt to auto-install jose in environments that ignored requirements (best effort)
+try:
+    from ._install_guard import main as _install_guard_main  # type: ignore
+    _install_guard_main()
+except Exception:
+    # Do not fail if guard cannot run; continue to import jose normally and raise a helpful error if missing.
+    pass
+
 # Minimal self-check for jose availability; raise a clear runtime error guiding installation
 try:
     from jose import JWTError, jwt  # provided by python-jose
