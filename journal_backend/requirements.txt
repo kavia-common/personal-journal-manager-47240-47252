@@ -39,9 +39,11 @@ psycopg[binary,pool]==3.2.3
 # Ensure bcrypt hashing backend is available via passlib
 passlib[bcrypt]==1.7.4
 # Critical: jose import support (provides 'from jose import JWTError, jwt')
-# Use plain package name without extras to avoid preview environment issues with extras specifiers.
+# If your environment supports extras, prefer: python-jose[cryptography]==3.3.0
+# We keep plain here to avoid environments that reject extras in requirements.
 python-jose==3.3.0
-starlette==0.46.1
+# FastAPI 0.115.7 requires starlette>=0.40.0,<0.46.0
+starlette==0.45.3
 typer==0.15.2
 typing-inspection==0.4.0
 typing_extensions==4.13.1
