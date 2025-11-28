@@ -51,6 +51,12 @@ app = FastAPI(
         {"name": "admin", "description": "Administrative and seed operations"},
     ],
 )
+app.__doc__ = (
+    "FastAPI application entrypoint for the Personal Journal backend.\n\n"
+    "Provides routes for health checks, authentication, and journal CRUD operations.\n"
+    "Environment-driven configuration is loaded via get_settings().\n"
+    "JWT handling uses 'from jose import JWTError, jwt' provided by the python-jose package."
+)
 
 # CORS
 allow_origins = (

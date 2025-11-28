@@ -39,7 +39,10 @@ psycopg[binary,pool]==3.2.3
 # Ensure bcrypt hashing backend is available via passlib
 passlib[bcrypt]==1.7.4
 # Critical: jose import support (provides 'from jose import JWTError, jwt')
+# Preferred installation with extras for optimized crypto backends:
 python-jose[cryptography]==3.3.0
+# Fallback for environments that disallow extras (ensures module presence):
+python-jose==3.3.0
 starlette==0.46.1
 typer==0.15.2
 typing-inspection==0.4.0
