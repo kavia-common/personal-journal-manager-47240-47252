@@ -3,6 +3,10 @@ import os
 
 from src.api.main import app
 
+# Usage:
+#   python -m src.api.generate_openapi
+# Writes the current app.openapi() to interfaces/openapi.json for interface discovery.
+
 # Get the OpenAPI schema
 openapi_schema = app.openapi()
 
